@@ -375,6 +375,14 @@
     font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:10px; transition:all .2s;
   }
   .store-btn:hover{ background:#fff; color:var(--navy-deep); border-color:#fff; }
+  .store-btn.soon{ opacity:0.7; cursor:default; }
+  .store-btn.soon:hover{ background:transparent; color:#fff; border-color:rgba(255,255,255,0.25); }
+  .store-note{ color:rgba(255,255,255,0.7); font-size:13px; margin-top:18px; font-family:'JetBrains Mono',monospace; }
+  .soon-pill{
+    display:inline-block; margin-left:8px; padding:3px 10px; border-radius:100px;
+    background:rgba(228,195,116,0.18); color:var(--gold); font-size:11px; font-weight:700;
+    letter-spacing:.06em; text-transform:uppercase; font-family:'JetBrains Mono',monospace; vertical-align:middle;
+  }
 
   /* ---------- FOOTER ---------- */
   footer{ background:var(--navy-deep); border-top:1px solid rgba(255,255,255,0.1); padding:56px 0 28px; color:rgba(255,255,255,0.6);}
@@ -415,6 +423,60 @@
     .float-card{ display:none; }
     .diff-table{ display:block; overflow-x:auto; white-space:nowrap; }
   }
+
+  /* ---------- WAITLIST MODAL ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; z-index:1000;
+    background:rgba(10,30,66,0.55); backdrop-filter:blur(4px);
+    display:flex; align-items:center; justify-content:center; padding:24px;
+    opacity:0; visibility:hidden; transition:opacity .25s ease, visibility .25s ease;
+  }
+  .modal-overlay.open{ opacity:1; visibility:visible; }
+  .modal{
+    background:var(--white); border-radius:20px; width:100%; max-width:440px;
+    padding:38px 34px 34px; position:relative; box-shadow:0 30px 80px rgba(10,30,66,0.35);
+    transform:translateY(16px) scale(0.98); transition:transform .25s ease;
+    max-height:calc(100vh - 48px); overflow-y:auto;
+  }
+  .modal-overlay.open .modal{ transform:translateY(0) scale(1); }
+  .modal-close{
+    position:absolute; top:16px; right:16px; width:34px; height:34px; border-radius:50%;
+    border:1px solid var(--line); background:var(--paper); color:var(--ink-soft);
+    font-size:18px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:all .2s;
+  }
+  .modal-close:hover{ background:var(--navy-deep); color:#fff; border-color:var(--navy-deep); }
+  .modal .eyebrow{ display:inline-block; margin-bottom:12px; }
+  .modal h3{ font-family:'Fraunces',serif; font-size:26px; line-height:1.15; color:var(--navy-deep); margin-bottom:8px; }
+  .modal p.modal-sub{ font-size:14.5px; color:var(--ink-soft); line-height:1.5; margin-bottom:24px; }
+  .modal .field{ margin-bottom:16px; }
+  .modal label{ display:block; font-size:12px; font-weight:600; color:var(--navy-deep); margin-bottom:6px; letter-spacing:.02em; }
+  .modal input{
+    width:100%; padding:13px 15px; border:1px solid var(--line); border-radius:11px;
+    font-size:15px; font-family:'Inter',sans-serif; color:var(--ink); background:var(--paper);
+    transition:border-color .2s, background .2s;
+  }
+  .modal input:focus{ outline:none; border-color:var(--gold); background:var(--white); }
+  .modal .submit-btn{
+    width:100%; background:var(--navy-deep); color:#fff; border:none; padding:15px;
+    border-radius:100px; font-size:15px; font-weight:600; font-family:'Inter',sans-serif;
+    cursor:pointer; margin-top:8px; transition:background .2s, transform .15s;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+  .modal .submit-btn:hover{ background:var(--navy-mid); transform:translateY(-1px); }
+  .modal .submit-btn:disabled{ opacity:0.7; cursor:default; transform:none; }
+  .modal .form-msg{ font-size:13.5px; margin-top:14px; text-align:center; min-height:18px; }
+  .modal .form-msg.error{ color:#C0392B; }
+  .modal .form-msg.success{ color:#1E7A45; }
+  .modal .privacy-note{ font-size:11.5px; color:var(--ink-soft); text-align:center; margin-top:14px; line-height:1.5; }
+  .modal .success-state{ text-align:center; padding:14px 0 6px; }
+  .modal .success-state .tick{
+    width:56px; height:56px; border-radius:50%; background:rgba(30,122,69,0.12); color:#1E7A45;
+    display:flex; align-items:center; justify-content:center; margin:0 auto 18px; font-size:28px;
+  }
+  .modal .success-state h3{ margin-bottom:8px; }
+  .spin{ width:16px; height:16px; border:2px solid rgba(255,255,255,0.4); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
 </style>
 </head>
 <body>
@@ -434,7 +496,7 @@
         <li><a href="#faq">FAQ</a></li>
       </ul>
     </nav>
-    <a href="#download" class="nav-cta">Get the app</a>
+    <a href="#download" class="nav-cta js-waitlist">Get early access</a>
   </div>
 </header>
 
@@ -448,12 +510,13 @@
         <h1 class="hero-h">Navigate life<br>with <em>cosmic</em> precision.</h1>
         <p class="hero-sub">AstroLifeGPS pairs real-time planetary intelligence with ReBi AI™ to show you exactly when to act — on your career, your money, your relationships, your day. Not a horoscope. A daily GPS for the decisions that matter.</p>
         <div class="hero-ctas">
-          <a href="#download" class="btn-primary">
-            Download the app
+          <a href="#download" class="btn-primary js-waitlist">
+            Join the waitlist
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
           <a href="#how" class="btn-secondary">See how it works</a>
         </div>
+        <p style="font-size:13px; color:var(--ink-soft); margin:-30px 0 40px; font-family:'JetBrains Mono',monospace;">📱 iOS &amp; Android apps launching soon — join the waitlist to get in first.</p>
         <div class="trust-line">
           <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>Birth chart precision</span>
           <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>Live planetary transits</span>
@@ -805,20 +868,21 @@
       <circle cx="220" cy="180" r="4" fill="#fff" opacity="0.5"/>
     </svg>
     <div class="wrap reveal">
-      <span class="eyebrow eyebrow-light">Download AstroLifeGPS</span>
+      <span class="eyebrow eyebrow-light">Coming soon <span class="soon-pill">Beta</span></span>
       <h2 class="stop" style="margin-top:14px;">Stop guessing.</h2>
       <h2 class="start">Start navigating.</h2>
-      <p>Join the people discovering better timing, better decisions, and greater clarity — every single morning.</p>
+      <p>AstroLifeGPS is putting the final touches on its iOS &amp; Android apps. Join the waitlist now and be among the first to navigate every morning with cosmic precision — early users get priority access at launch.</p>
       <div class="store-row">
-        <a href="#" class="store-btn">
+        <span class="store-btn soon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.7 12.3c0-3 2.4-4.4 2.5-4.5-1.4-2-3.5-2.3-4.3-2.3-1.8-.2-3.6 1.1-4.5 1.1-.9 0-2.4-1-3.9-1-2 0-3.9 1.2-4.9 3-2.1 3.6-.5 9 1.5 12 1 1.4 2.1 3.1 3.7 3 1.5-.1 2-1 3.8-1 1.8 0 2.2 1 3.8 1 1.6 0 2.6-1.4 3.5-2.9 1.1-1.7 1.6-3.3 1.6-3.4-.1 0-3.1-1.2-3.1-4.7 0 0 0 0 0 0z"/></svg>
-          Download for iOS
-        </a>
-        <a href="#" class="store-btn">
+          iOS — Coming soon
+        </span>
+        <span class="store-btn soon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l11 9-11 9V3zm12 9l3.5-3 3 1.7c1 .6 1 1.9 0 2.5l-3 1.8L15 12z"/></svg>
-          Get it on Google Play
-        </a>
+          Android — Coming soon
+        </span>
       </div>
+      <p class="store-note">The apps aren't live yet — but the waitlist is. Be first in line when they drop.</p>
     </div>
   </section>
 
@@ -863,10 +927,42 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 ReBi AI. All rights reserved.</span>
-      <span>Made with cosmic precision in Bengaluru.</span>
+      <span>Made with cosmic precision in India.</span>
     </div>
   </div>
 </footer>
+
+<!-- WAITLIST MODAL -->
+<div class="modal-overlay" id="waitlistModal" role="dialog" aria-modal="true" aria-labelledby="waitlistTitle">
+  <div class="modal">
+    <button class="modal-close" id="waitlistClose" aria-label="Close">&times;</button>
+    <div id="waitlistFormWrap">
+      <span class="eyebrow">Early access</span>
+      <h3 id="waitlistTitle">Join the waitlist.</h3>
+      <p class="modal-sub">Be first in line when the iOS &amp; Android apps launch. Drop your details and we'll reach out with priority access.</p>
+      <form id="waitlistForm" novalidate>
+        <div class="field">
+          <label for="wl-name">Full name</label>
+          <input type="text" id="wl-name" name="name" placeholder="Your name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="wl-email">Email address</label>
+          <input type="email" id="wl-email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+        <button type="submit" class="submit-btn" id="waitlistSubmit">
+          <span class="btn-label">Request access</span>
+        </button>
+        <div class="form-msg" id="waitlistMsg" aria-live="polite"></div>
+        <p class="privacy-note">We'll only use your email to tell you when AstroLifeGPS is ready. No spam, ever.</p>
+      </form>
+    </div>
+    <div class="success-state" id="waitlistSuccess" style="display:none;">
+      <div class="tick">&#10003;</div>
+      <h3>You're on the list!</h3>
+      <p class="modal-sub" style="margin-bottom:0;">Thanks for joining. We'll email you the moment AstroLifeGPS goes live.</p>
+    </div>
+  </div>
+</div>
 
 <script>
   // scroll reveal
@@ -875,7 +971,68 @@
   }, {threshold:0.12});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-  // header bg on scroll (already translucent, keep simple)
+  // ---------- WAITLIST MODAL ----------
+  // 1. Create a Google Sheet, then Extensions > Apps Script and paste the doPost()
+  //    script shown in the project notes. Deploy it as a Web App (Execute as: Me,
+  //    Access: Anyone) and paste the resulting /exec URL below.
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnzgKPbiPS2-v8Sw1bvBknH9hyQpQmyBzuzhaMZBTZhzNlRiOfe-hW7QWJAVIP0qw/exec';
+
+  const wlModal   = document.getElementById('waitlistModal');
+  const wlForm    = document.getElementById('waitlistForm');
+  const wlMsg     = document.getElementById('waitlistMsg');
+  const wlSubmit  = document.getElementById('waitlistSubmit');
+  const wlFormWrap= document.getElementById('waitlistFormWrap');
+  const wlSuccess = document.getElementById('waitlistSuccess');
+  let wlLastFocus = null;
+
+  function openWaitlist(e){
+    if(e) e.preventDefault();
+    wlLastFocus = document.activeElement;
+    // reset to form view each open
+    wlFormWrap.style.display = '';
+    wlSuccess.style.display = 'none';
+    wlMsg.textContent = ''; wlMsg.className = 'form-msg';
+    wlModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(()=>{ document.getElementById('wl-name').focus(); }, 120);
+  }
+  function closeWaitlist(){
+    wlModal.classList.remove('open');
+    document.body.style.overflow = '';
+    if(wlLastFocus) wlLastFocus.focus();
+  }
+
+  document.querySelectorAll('.js-waitlist').forEach(btn=> btn.addEventListener('click', openWaitlist));
+  document.getElementById('waitlistClose').addEventListener('click', closeWaitlist);
+  wlModal.addEventListener('click', (e)=>{ if(e.target === wlModal) closeWaitlist(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && wlModal.classList.contains('open')) closeWaitlist(); });
+
+  wlForm.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const name  = document.getElementById('wl-name').value.trim();
+    const email = document.getElementById('wl-email').value.trim();
+    wlMsg.className = 'form-msg';
+
+    if(!name){ wlMsg.textContent = 'Please enter your name.'; wlMsg.className = 'form-msg error'; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ wlMsg.textContent = 'Please enter a valid email address.'; wlMsg.className = 'form-msg error'; return; }
+
+    wlSubmit.disabled = true;
+    wlSubmit.innerHTML = '<span class="spin"></span><span class="btn-label">Submitting…</span>';
+
+    try{
+      const body = new URLSearchParams({ name, email, source: 'website' });
+      // no-cors keeps it simple for Apps Script; response is opaque but the row is written
+      await fetch(GOOGLE_SCRIPT_URL, { method:'POST', mode:'no-cors', body });
+      wlForm.reset();
+      wlFormWrap.style.display = 'none';
+      wlSuccess.style.display = 'block';
+    }catch(err){
+      wlMsg.textContent = 'Something went wrong. Please try again.';
+      wlMsg.className = 'form-msg error';
+      wlSubmit.disabled = false;
+      wlSubmit.innerHTML = '<span class="btn-label">Request access</span>';
+    }
+  });
 </script>
 
 </body>
