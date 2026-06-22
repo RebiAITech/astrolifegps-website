@@ -1,0 +1,85 @@
+/* ============================================================
+   AstroLifeGPS — shared styles for content / legal sub-pages
+   Matches the homepage design system (navy + gold, Fraunces).
+   ============================================================ */
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300 600;font-display:swap;src:url('/assets/fonts/fraunces-variable.woff2') format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:300 600;font-display:swap;src:url('/assets/fonts/fraunces-italic.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 800;font-display:swap;src:url('/assets/fonts/inter-variable.woff2') format('woff2');}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 500;font-display:swap;src:url('/assets/fonts/jetbrainsmono-variable.woff2') format('woff2');}
+
+:root{
+  --navy-deep:#0A1E42; --navy:#15316B; --navy-mid:#1E4090;
+  --gold:#C89B3C; --gold-light:#E4C374;
+  --paper:#FBFAF7; --white:#FFFFFF;
+  --ink:#15171C; --ink-soft:#5B5F6B; --line:#E7E5DD;
+  --max:1180px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{ background:var(--white); color:var(--ink); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+::selection{ background:var(--gold-light); color:var(--navy-deep); }
+h1,h2,h3,h4{ font-family:'Fraunces',serif; font-weight:500; letter-spacing:-0.01em; color:var(--navy-deep); }
+a{ color:inherit; text-decoration:none; }
+img{ max-width:100%; display:block; }
+.wrap{ max-width:var(--max); margin:0 auto; padding:0 32px; }
+
+/* ---------- NAV ---------- */
+header{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,0.86); backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+.nav-inner{ max-width:var(--max); margin:0 auto; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; }
+.logo{ font-family:'Fraunces',serif; font-weight:600; font-size:19px; color:var(--navy-deep); display:flex; align-items:center; gap:8px; }
+.logo-mark{ border-radius:7px; display:block; flex-shrink:0; }
+nav ul{ list-style:none; display:flex; gap:36px; }
+nav a{ font-size:14px; font-weight:500; color:var(--navy-deep); opacity:0.75; transition:opacity .2s; }
+nav a:hover{ opacity:1; }
+.nav-cta{ background:var(--navy-deep); color:#fff; padding:10px 20px; border-radius:100px; font-size:13px; font-weight:600; opacity:1 !important; transition:background .2s; }
+.nav-cta:hover{ background:var(--gold); }
+
+/* ---------- CONTENT / LEGAL ---------- */
+.legal{ max-width:768px; margin:0 auto; padding:144px 32px 96px; }
+.legal-eyebrow{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:14px; }
+.legal h1{ font-size:clamp(34px,5vw,52px); line-height:1.05; margin-bottom:14px; }
+.legal-lead{ font-size:17px; color:var(--ink-soft); line-height:1.65; margin-top:6px; }
+.legal-meta{ font-size:13px; color:var(--ink-soft); font-family:'JetBrains Mono',monospace; }
+.legal-divider{ height:1px; background:var(--line); margin:34px 0; }
+.legal-body h2{ font-size:23px; margin-top:46px; margin-bottom:12px; }
+.legal-body h3{ font-size:16px; margin-top:26px; margin-bottom:8px; font-family:'Inter',sans-serif; font-weight:600; color:var(--navy-deep); }
+.legal-body p{ font-size:15.5px; color:var(--ink-soft); line-height:1.78; margin-bottom:15px; }
+.legal-body ul{ padding-left:20px; margin-bottom:15px; }
+.legal-body li{ font-size:15.5px; color:var(--ink-soft); line-height:1.78; margin-bottom:6px; }
+.legal-body a{ color:var(--navy-mid); font-weight:500; }
+.legal-body a:hover{ color:var(--gold); }
+.legal-body strong{ color:var(--ink); font-weight:600; }
+.legal-body table{ width:100%; border-collapse:collapse; margin:8px 0 20px; }
+.legal-body th{ text-align:left; padding:11px 14px; font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft); border-bottom:2px solid var(--navy-deep); font-weight:500; }
+.legal-body td{ padding:11px 14px; border-bottom:1px solid var(--line); font-size:14px; color:var(--ink-soft); }
+.callout{ background:var(--paper); border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:10px; padding:16px 18px; margin:20px 0; }
+.callout p{ margin:0; font-size:14.5px; color:var(--ink); }
+.contact-cards{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:26px 0 6px; }
+.contact-card{ border:1px solid var(--line); border-radius:14px; padding:22px; }
+.contact-card .cc-label{ font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--gold); margin-bottom:8px; }
+.contact-card a{ font-size:16px; color:var(--navy-deep); font-weight:600; }
+.contact-card a:hover{ color:var(--gold); }
+
+/* ---------- FOOTER ---------- */
+footer{ background:var(--navy-deep); border-top:1px solid rgba(255,255,255,0.1); padding:56px 0 28px; color:rgba(255,255,255,0.6); }
+.footer-grid{ display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; margin-bottom:50px; }
+.footer-brand{ font-family:'Fraunces',serif; color:#fff; font-size:19px; margin-bottom:14px; }
+.footer-brand .pwr{ font-size:11.5px; color:var(--gold-light); font-family:'JetBrains Mono',monospace; display:block; margin-top:6px; }
+.footer-grid h5{ font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.4); margin-bottom:16px; font-family:'JetBrains Mono',monospace; font-weight:500; }
+.footer-grid ul{ list-style:none; }
+.footer-grid li{ margin-bottom:11px; font-size:13.5px; }
+.footer-grid a{ color:rgba(255,255,255,0.6); }
+.footer-grid a:hover{ color:#fff; }
+.footer-bottom{ display:flex; justify-content:space-between; padding-top:28px; border-top:1px solid rgba(255,255,255,0.1); font-size:12.5px; flex-wrap:wrap; gap:10px; }
+
+@media (max-width:980px){
+  nav ul{ display:none; }
+  .footer-grid{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:560px){
+  .nav-inner{ padding-left:20px; padding-right:20px; }
+  .legal{ padding:120px 20px 64px; }
+  .contact-cards{ grid-template-columns:1fr; }
+  .footer-grid{ grid-template-columns:1fr; gap:30px; }
+  .legal-body table{ display:block; overflow-x:auto; white-space:nowrap; }
+}
