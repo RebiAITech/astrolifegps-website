@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AstroLifeGPS — AI-Powered Life Navigation</title>
+<meta name="description" content="AstroLifeGPS pairs real-time planetary intelligence with ReBi AI™ to show you exactly when to act — on your career, money, relationships and day. Not a horoscope. A daily GPS for the decisions that matter.">
+<meta name="theme-color" content="#0A1E42">
+<link rel="canonical" href="https://astrolifegps.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AstroLifeGPS">
+<meta property="og:title" content="AstroLifeGPS — AI-Powered Life Navigation">
+<meta property="og:description" content="Real-time planetary intelligence + ReBi AI™ for a daily, personalised GPS across career, wealth, relationships and health.">
+<meta property="og:url" content="https://astrolifegps.com/">
+<meta property="og:image" content="https://astrolifegps.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AstroLifeGPS — AI-Powered Life Navigation">
+<meta name="twitter:description" content="Real-time planetary intelligence + ReBi AI™ for a daily, personalised GPS across career, wealth, relationships and health.">
+<meta name="twitter:image" content="https://astrolifegps.com/assets/og-image.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/favicon.png">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://astrolifegps.com/#organization",
+  "name": "AstroLifeGPS",
+  "url": "https://astrolifegps.com/",
+  "logo": "https://astrolifegps.com/assets/logo.png",
+  "description": "AI-powered life navigation — daily, personalised guidance across career, wealth, relationships and health, powered by ReBi AI."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://astrolifegps.com/#website",
+  "url": "https://astrolifegps.com/",
+  "name": "AstroLifeGPS",
+  "publisher": { "@id": "https://astrolifegps.com/#organization" }
+}
+</script>
+
+<!-- Self-hosted fonts (no render-blocking external CSS) -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/fraunces-variable.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/inter-variable.woff2">
+<style>
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300 600;font-display:swap;src:url('/assets/fonts/fraunces-variable.woff2') format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:300 600;font-display:swap;src:url('/assets/fonts/fraunces-italic.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 800;font-display:swap;src:url('/assets/fonts/inter-variable.woff2') format('woff2');}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 500;font-display:swap;src:url('/assets/fonts/jetbrainsmono-variable.woff2') format('woff2');}
+</style>
+<style>
+  :root{
+    --navy-deep:#0A1E42;
+    --navy:#15316B;
+    --navy-mid:#1E4090;
+    --gold:#C89B3C;
+    --gold-light:#E4C374;
+    --paper:#FBFAF7;
+    --white:#FFFFFF;
+    --ink:#15171C;
+    --ink-soft:#5B5F6B;
+    --line:#E7E5DD;
+    --max:1180px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--white);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--gold-light); color:var(--navy-deep); }
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    color:var(--navy-deep);
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:500;
+  }
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 32px; }
+  a{ color:inherit; text-decoration:none; }
+  img{max-width:100%; display:block;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(255,255,255,0.86);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--max); margin:0 auto; padding:18px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{
+    font-family:'Fraunces', serif; font-weight:600; font-size:19px;
+    color:var(--navy-deep); display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{
+    width:7px; height:7px; border-radius:50%; background:var(--gold);
+    box-shadow:0 0 0 3px rgba(200,155,60,0.18);
+  }
+  nav ul{ list-style:none; display:flex; gap:36px; }
+  nav a{ font-size:14px; font-weight:500; color:var(--navy-deep); opacity:0.75; transition:opacity .2s; }
+  nav a:hover{ opacity:1; }
+  .nav-cta{
+    background:var(--navy-deep); color:#fff; padding:10px 20px; border-radius:100px;
+    font-size:13px; font-weight:600; opacity:1 !important;
+    transition:background .2s;
+  }
+  .nav-cta:hover{ background:var(--gold); }
+  .nav-toggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:168px 0 0;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
+    max-width:var(--max); margin:0 auto; padding:0 32px 80px;
+  }
+  .hero-eyebrow{ display:flex; align-items:center; gap:10px; margin-bottom:22px;}
+  .hero-eyebrow .rule{ width:28px; height:1px; background:var(--gold); }
+  h1.hero-h{
+    font-size:clamp(40px, 5.4vw, 68px);
+    line-height:1.02;
+    margin-bottom:24px;
+  }
+  h1.hero-h em{
+    font-style:italic; font-weight:400; color:var(--gold);
+  }
+  .hero-sub{
+    font-size:17px; line-height:1.65; color:var(--ink-soft);
+    max-width:480px; margin-bottom:36px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:46px;}
+  .btn-primary{
+    background:var(--navy-deep); color:#fff; padding:15px 26px; border-radius:100px;
+    font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .2s, background .2s;
+  }
+  .btn-primary:hover{ background:var(--navy-mid); transform:translateY(-1px); }
+  .btn-secondary{
+    border:1px solid var(--line); color:var(--navy-deep); padding:15px 26px; border-radius:100px;
+    font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:8px;
+    transition:border-color .2s, background .2s;
+  }
+  .btn-secondary:hover{ border-color:var(--navy-deep); background:var(--paper); }
+  .trust-line{
+    display:flex; gap:22px; flex-wrap:wrap; font-size:12.5px; color:var(--ink-soft);
+    font-family:'JetBrains Mono', monospace;
+  }
+  .trust-line span{ display:flex; align-items:center; gap:6px; }
+  .trust-line svg{ width:13px; height:13px; color:var(--gold); flex-shrink:0; }
+
+  /* Hero visual: orbit + phone */
+  .hero-visual{ position:relative; height:560px; display:flex; align-items:center; justify-content:center;}
+  .orbit-svg{ position:absolute; inset:0; width:100%; height:100%; }
+  .orbit-ring{ fill:none; stroke:var(--line); stroke-width:1; }
+  .orbit-ring.alt{ stroke:rgba(200,155,60,0.35); stroke-dasharray:2 6; }
+  .planet{ filter:drop-shadow(0 2px 6px rgba(10,30,66,0.25)); }
+
+  .phone{
+    position:relative; z-index:3;
+    width:248px; height:506px;
+    background:var(--navy-deep);
+    border-radius:34px;
+    padding:14px;
+    box-shadow:0 30px 60px -20px rgba(10,30,66,0.45), 0 0 0 1px rgba(10,30,66,0.06);
+  }
+  .phone-screen{
+    background:linear-gradient(165deg,#15316B 0%, #0A1E42 65%, #0A1530 100%);
+    border-radius:24px; height:100%; width:100%;
+    padding:22px 18px; color:#fff; position:relative; overflow:hidden;
+  }
+  .phone-screen::after{
+    content:''; position:absolute; top:-40%; right:-30%; width:220px; height:220px;
+    background:radial-gradient(circle, rgba(228,195,116,0.18), transparent 70%);
+  }
+  .phone-greet{ font-size:11px; color:rgba(255,255,255,0.6); font-family:'JetBrains Mono',monospace; margin-bottom:2px;}
+  .phone-name{ font-family:'Fraunces',serif; font-size:18px; margin-bottom:18px;}
+  .gauge-wrap{ display:flex; justify-content:center; margin-bottom:18px; position:relative;}
+  .gauge-pct{ position:absolute; top:38%; left:50%; transform:translate(-50%,-50%); text-align:center;}
+  .gauge-pct .num{ font-family:'Fraunces',serif; font-size:30px; line-height:1;}
+  .gauge-pct .lbl{ font-size:8px; font-family:'JetBrains Mono',monospace; letter-spacing:0.1em; color:var(--gold-light); margin-top:2px;}
+  .sub-scores{ display:flex; gap:8px; margin-bottom:16px; }
+  .sub-score{ flex:1; background:rgba(255,255,255,0.07); border-radius:10px; padding:8px 6px; text-align:center; border:1px solid rgba(255,255,255,0.08);}
+  .sub-score .v{ font-family:'Fraunces',serif; font-size:15px; color:var(--gold-light); }
+  .sub-score .l{ font-size:7.5px; color:rgba(255,255,255,0.55); margin-top:2px; font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:0.05em;}
+  .golden-card{
+    background:rgba(255,255,255,0.06); border:1px solid rgba(228,195,116,0.3);
+    border-radius:12px; padding:11px 13px;
+  }
+  .golden-card .gc-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;}
+  .golden-card .gc-label{ font-size:9px; font-family:'JetBrains Mono',monospace; color:var(--gold-light); letter-spacing:0.06em;}
+  .golden-card .gc-time{ font-size:9px; color:rgba(255,255,255,0.5);}
+  .golden-card .gc-text{ font-size:11.5px; line-height:1.4; color:rgba(255,255,255,0.92);}
+
+  .float-card{
+    position:absolute; background:#fff; border-radius:16px; box-shadow:0 18px 40px -12px rgba(10,30,66,0.22);
+    padding:14px 16px; z-index:4; border:1px solid var(--line);
+  }
+  .float-card.fc1{ top:38px; left:-26px; width:172px; }
+  .float-card.fc2{ bottom:60px; right:-34px; width:188px; }
+  .fc-title{ font-size:10px; font-family:'JetBrains Mono',monospace; color:var(--ink-soft); letter-spacing:0.05em; text-transform:uppercase; margin-bottom:6px;}
+  .fc-body{ font-size:12.5px; line-height:1.4; color:var(--ink); font-weight:500;}
+  .fc-stars{ color:var(--gold); font-size:11px; margin-top:6px; letter-spacing:1px;}
+
+  /* ---------- LOGOS / GPS METAPHOR STRIP ---------- */
+  .metaphor{ padding:30px 0 90px; }
+  .metaphor-head{ text-align:center; max-width:640px; margin:0 auto 56px; }
+  .metaphor-head h2{ font-size:clamp(28px,3.4vw,40px); line-height:1.15; margin-bottom:16px;}
+  .metaphor-head p{ color:var(--ink-soft); font-size:16px; line-height:1.65;}
+  .metaphor-grid{
+    display:grid; grid-template-columns:repeat(5,1fr); border-top:1px solid var(--line); border-left:1px solid var(--line);
+  }
+  .m-cell{ border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:26px 18px; }
+  .m-cell .m-num{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold); margin-bottom:14px;}
+  .m-cell .m-old{ font-size:13px; color:var(--ink-soft); margin-bottom:10px; line-height:1.45;}
+  .m-cell .m-arrow{ color:var(--gold); font-size:14px; margin-bottom:10px;}
+  .m-cell .m-new{ font-size:13.5px; color:var(--navy-deep); font-weight:600; line-height:1.45;}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding:108px 0; }
+  .section-head{ max-width:620px; margin-bottom:64px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .section-head .eyebrow{ display:block; margin-bottom:14px; }
+  .section-head h2{ font-size:clamp(30px,3.6vw,44px); line-height:1.12; }
+  .section-head p{ color:var(--ink-soft); font-size:16px; line-height:1.65; margin-top:18px; }
+
+  .bg-paper{ background:var(--paper); }
+  .bg-navy{ background:var(--navy-deep); color:#fff; }
+  .bg-navy h2, .bg-navy h3, .bg-navy .eyebrow-light{ color:#fff; }
+
+  /* ---------- DASHBOARD CARDS (4 scores) ---------- */
+  .score-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .score-card{ background:#fff; padding:36px 28px; transition:background .25s; }
+  .score-card:hover{ background:var(--paper); }
+  .score-card .sc-icon{ width:38px; height:38px; margin-bottom:22px; }
+  .score-card h3{ font-size:19px; margin-bottom:10px; font-weight:500; }
+  .score-card p{ font-size:14px; color:var(--ink-soft); line-height:1.6; }
+
+  /* ---------- DIFFERENTIATOR TABLE ---------- */
+  .diff-table{ width:100%; border-collapse:collapse; }
+  .diff-table th{
+    text-align:left; padding:16px 20px; font-family:'JetBrains Mono',monospace; font-size:11px;
+    text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-soft); border-bottom:2px solid var(--navy-deep);
+    font-weight:500;
+  }
+  .diff-table th.center, .diff-table td.center{ text-align:center; }
+  .diff-table td{ padding:15px 20px; border-bottom:1px solid var(--line); font-size:14.5px; }
+  .diff-table tr td:first-child{ color:var(--ink); font-weight:500; }
+  .diff-table .yes{ color:var(--gold); font-size:16px; }
+  .diff-table .no{ color:#D8D5CB; font-size:16px; }
+  .diff-table th:nth-child(3){ color:var(--navy-deep); font-weight:700; }
+
+  /* ---------- REBI AI ARCHITECTURE ---------- */
+  .rebi-grid{ display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
+  .rebi-flow{ display:flex; flex-direction:column; gap:0; }
+  .flow-step{
+    display:flex; align-items:center; gap:16px; padding:16px 20px; background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1); border-radius:12px; position:relative;
+  }
+  .flow-step + .flow-step{ margin-top:0; }
+  .flow-connector{ display:flex; justify-content:center; padding:6px 0; }
+  .flow-connector svg{ width:14px; height:18px; color:var(--gold); }
+  .flow-num{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold-light);
+    width:24px; flex-shrink:0;
+  }
+  .flow-label{ font-size:14.5px; color:#fff; font-weight:500; }
+  .rebi-modules{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .module-card{
+    background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:20px;
+  }
+  .module-card h4{ color:#fff; font-size:15px; margin-bottom:7px; font-weight:500;}
+  .module-card p{ font-size:12.5px; color:rgba(255,255,255,0.6); line-height:1.55;}
+
+  /* ---------- GOLDEN MOMENTS TIMELINE ---------- */
+  .timeline{ position:relative; padding-left:28px; }
+  .timeline::before{ content:''; position:absolute; left:5px; top:8px; bottom:8px; width:1px; background:var(--line); }
+  .t-item{ position:relative; padding-bottom:40px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:''; position:absolute; left:-28px; top:4px; width:11px; height:11px; border-radius:50%;
+    background:var(--gold); box-shadow:0 0 0 4px var(--paper), 0 0 0 5px var(--line);
+  }
+  .t-time{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold); margin-bottom:6px; }
+  .t-title{ font-size:18px; font-weight:600; color:var(--navy-deep); margin-bottom:6px; font-family:'Fraunces',serif;}
+  .t-stars{ color:var(--gold); font-size:12px; letter-spacing:2px; margin-bottom:8px;}
+  .t-desc{ font-size:14.5px; color:var(--ink-soft); line-height:1.6; max-width:440px;}
+
+  /* ---------- CHAT MOCK ---------- */
+  .chat-mock{
+    background:var(--navy-deep); border-radius:24px; padding:32px; max-width:520px;
+  }
+  .chat-bubble{ border-radius:16px; padding:14px 18px; font-size:14.5px; line-height:1.55; margin-bottom:14px; max-width:88%;}
+  .chat-bubble.user{ background:rgba(255,255,255,0.1); color:#fff; margin-left:auto; border-bottom-right-radius:4px;}
+  .chat-bubble.ai{ background:#fff; color:var(--ink); border-bottom-left-radius:4px;}
+  .chat-bubble.ai .tag{ font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--gold); display:block; margin-bottom:6px; letter-spacing:0.05em;}
+
+  /* ---------- FEATURE GRID (everything in one app) ---------- */
+  .feat-cols{ display:grid; grid-template-columns:repeat(4,1fr); gap:48px; }
+  .feat-col h4{
+    font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--gold); margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid var(--line);
+  }
+  .feat-col ul{ list-style:none; }
+  .feat-col li{ font-size:14px; color:var(--ink-soft); padding:7px 0; border-bottom:1px dashed var(--line); }
+  .feat-col li:last-child{ border-bottom:none; }
+
+  /* ---------- MARKET STATS ---------- */
+  .stat-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-bottom:64px;}
+  .stat-cell{ background:#fff; padding:34px 26px; }
+  .stat-cell .stat-num{ font-family:'Fraunces',serif; font-size:38px; color:var(--navy-deep); line-height:1; margin-bottom:10px;}
+  .stat-cell .stat-num span{ color:var(--gold); }
+  .stat-cell .stat-lbl{ font-size:13px; color:var(--ink-soft); line-height:1.5;}
+
+  .proj-table{ width:100%; border-collapse:collapse; }
+  .proj-table th{ text-align:left; padding:14px 18px; font-size:11px; font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); border-bottom:2px solid var(--navy-deep);}
+  .proj-table td{ padding:16px 18px; border-bottom:1px solid var(--line); font-size:14.5px;}
+  .proj-table tr td:first-child{ font-weight:600; color:var(--navy-deep); font-family:'Fraunces',serif; font-size:16px;}
+  .proj-table tr:last-child td{ font-weight:700; }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .testi-card{ background:#fff; padding:36px 30px; }
+  .testi-quote{ font-family:'Fraunces',serif; font-style:italic; font-size:18px; line-height:1.5; color:var(--navy-deep); margin-bottom:20px;}
+  .testi-who{ font-size:12.5px; font-family:'JetBrains Mono',monospace; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em;}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{ border-bottom:1px solid var(--line); padding:26px 0; }
+  .faq-q{ display:flex; justify-content:space-between; align-items:center; cursor:pointer; gap:20px;}
+  .faq-q h4{ font-size:17px; font-weight:500; font-family:'Fraunces',serif; }
+  .faq-q .plus{ width:20px; height:20px; flex-shrink:0; position:relative;}
+  .faq-q .plus::before, .faq-q .plus::after{ content:''; position:absolute; background:var(--navy-deep); transition:transform .25s;}
+  .faq-q .plus::before{ width:14px; height:1.5px; top:9px; left:3px;}
+  .faq-q .plus::after{ width:1.5px; height:14px; left:9px; top:3px;}
+  .faq-item.open .plus::after{ transform:rotate(90deg); opacity:0;}
+  .faq-a{ max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .faq-item.open .faq-a{ max-height:200px; }
+  .faq-a p{ padding-top:14px; font-size:14.5px; color:var(--ink-soft); line-height:1.65; max-width:560px;}
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{ text-align:center; padding:120px 0; position:relative; overflow:hidden;}
+  .final-cta h2{ font-size:clamp(34px,5vw,58px); line-height:1.08; margin-bottom:8px;}
+  .final-cta h2.stop{ color:rgba(255,255,255,0.4); }
+  .final-cta h2.start{ color:#fff; }
+  .final-cta p{ color:rgba(255,255,255,0.65); max-width:480px; margin:24px auto 40px; font-size:16px; line-height:1.6;}
+  .store-row{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .store-btn{
+    border:1px solid rgba(255,255,255,0.25); color:#fff; padding:15px 28px; border-radius:100px;
+    font-size:14px; font-weight:600; display:inline-flex; align-items:center; gap:10px; transition:all .2s;
+  }
+  .store-btn:hover{ background:#fff; color:var(--navy-deep); border-color:#fff; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--navy-deep); border-top:1px solid rgba(255,255,255,0.1); padding:56px 0 28px; color:rgba(255,255,255,0.6);}
+  .footer-grid{ display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; margin-bottom:50px;}
+  .footer-brand{ font-family:'Fraunces',serif; color:#fff; font-size:19px; margin-bottom:14px;}
+  .footer-brand .pwr{ font-size:11.5px; color:var(--gold-light); font-family:'JetBrains Mono',monospace; display:block; margin-top:6px;}
+  .footer-grid h5{ font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.4); margin-bottom:16px; font-family:'JetBrains Mono',monospace; font-weight:500;}
+  .footer-grid ul{ list-style:none; }
+  .footer-grid li{ margin-bottom:11px; font-size:13.5px;}
+  .footer-grid a:hover{ color:#fff; }
+  .footer-bottom{ display:flex; justify-content:space-between; padding-top:28px; border-top:1px solid rgba(255,255,255,0.1); font-size:12.5px; flex-wrap:wrap; gap:10px;}
+
+  /* ---------- REVEAL ANIM ---------- */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (max-width:980px){
+    nav ul{ display:none; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-visual{ height:440px; margin-top:20px; }
+    .metaphor-grid{ grid-template-columns:1fr 1fr; }
+    .score-grid{ grid-template-columns:1fr 1fr; }
+    .rebi-grid{ grid-template-columns:1fr; gap:40px; }
+    .feat-cols{ grid-template-columns:1fr 1fr; gap:32px; }
+    .stat-row{ grid-template-columns:1fr 1fr; }
+    .testi-grid{ grid-template-columns:1fr; }
+    .diff-table{ font-size:13px; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:560px){
+    .wrap, .nav-inner{ padding-left:20px; padding-right:20px; }
+    .hero-grid{ padding-left:20px; padding-right:20px; }
+    .metaphor-grid{ grid-template-columns:1fr; }
+    .score-grid{ grid-template-columns:1fr; }
+    .feat-cols{ grid-template-columns:1fr; }
+    .stat-row{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns:1fr; gap:30px;}
+    .float-card{ display:none; }
+    .diff-table{ display:block; overflow-x:auto; white-space:nowrap; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <svg class="logo-mark" width="27" height="27" viewBox="0 0 96 96" fill="none" aria-hidden="true">
+        <defs><linearGradient id="algNav" x1="16" y1="20" x2="82" y2="84" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#6FA8FF"/><stop offset=".55" stop-color="#6D5DF0"/><stop offset="1" stop-color="#9B5CF6"/>
+        </linearGradient></defs>
+        <path d="M41.5 24.5Q48 11 54.5 24.5L76.5 70.5Q83 84 68 84L28 84Q13 84 19.5 70.5Z" fill="url(#algNav)"/>
+        <path d="M52 33C47.5 43 56 47 53 56C50.8 62.5 58 64 53 71C50.2 74.8 44 73.5 43.2 68C42 61.5 48 59 47.5 53C47 46.5 42.5 43 49 35C50.3 33.4 50.6 33 52 33Z" fill="#fff"/>
+      </svg>
+      AstroLifeGPS</a>
+    <nav>
+      <ul>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#rebi">ReBi AI</a></li>
+        <li><a href="#moments">Golden Moments</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#market">Market</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <a href="#download" class="nav-cta">Get the app</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow"><span class="rule"></span><span class="eyebrow">AI Life Navigation</span></div>
+        <h1 class="hero-h">Navigate life<br>with <em>cosmic</em> precision.</h1>
+        <p class="hero-sub">AstroLifeGPS pairs real-time planetary intelligence with ReBi AI™ to show you exactly when to act — on your career, your money, your relationships, your day. Not a horoscope. A daily GPS for the decisions that matter.</p>
+        <div class="hero-ctas">
+          <a href="#download" class="btn-primary">
+            Download the app
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#how" class="btn-secondary">See how it works</a>
+        </div>
+        <div class="trust-line">
+          <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>Birth chart precision</span>
+          <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>Live planetary transits</span>
+          <span><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>Powered by ReBi AI™</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <svg class="orbit-svg" viewBox="0 0 560 560">
+          <ellipse class="orbit-ring" cx="280" cy="280" rx="260" ry="200"/>
+          <ellipse class="orbit-ring alt" cx="280" cy="280" rx="195" ry="245"/>
+          <ellipse class="orbit-ring" cx="280" cy="280" rx="130" ry="150"/>
+          <circle class="planet" cx="540" cy="280" r="5" fill="#C89B3C"/>
+          <circle class="planet" cx="85" cy="200" r="4" fill="#15316B"/>
+          <circle class="planet" cx="280" cy="35" r="3.5" fill="#C89B3C"/>
+          <circle class="planet" cx="410" cy="450" r="4.5" fill="#15316B"/>
+        </svg>
+        <div class="float-card fc1">
+          <div class="fc-title">Wealth &amp; Career</div>
+          <div class="fc-body">Strong window opening for negotiations this week.</div>
+        </div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-greet">Good morning</div>
+            <div class="phone-name">Your Day, Decoded</div>
+            <div class="gauge-wrap">
+              <svg width="140" height="140" viewBox="0 0 140 140">
+                <circle cx="70" cy="70" r="58" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="9"/>
+                <circle cx="70" cy="70" r="58" fill="none" stroke="#E4C374" stroke-width="9" stroke-linecap="round"
+                  stroke-dasharray="364" stroke-dashoffset="124" transform="rotate(-90 70 70)"/>
+              </svg>
+              <div class="gauge-pct"><div class="num">66%</div><div class="lbl">Favorable</div></div>
+            </div>
+            <div class="sub-scores">
+              <div class="sub-score"><div class="v">82</div><div class="l">Wealth</div></div>
+              <div class="sub-score"><div class="v">58</div><div class="l">Love</div></div>
+              <div class="sub-score"><div class="v">41</div><div class="l">Health</div></div>
+            </div>
+            <div class="golden-card">
+              <div class="gc-top"><span class="gc-label">★ Golden Moment</span><span class="gc-time">08:30–10:00</span></div>
+              <div class="gc-text">Ideal window for important conversations and decisions.</div>
+            </div>
+          </div>
+        </div>
+        <div class="float-card fc2">
+          <div class="fc-title">Surprise Insight</div>
+          <div class="fc-body">"You may feel unusually decisive today — use it."</div>
+          <div class="fc-stars">●●●●○ Confidence</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METAPHOR -->
+  <section class="metaphor" id="how">
+    <div class="wrap">
+      <div class="metaphor-head reveal">
+        <span class="eyebrow">What is AstroLifeGPS?</span>
+        <h2 style="margin-top:14px;">Most people use GPS to navigate roads. This one navigates life.</h2>
+        <p>While maps tell you where to go, AstroLifeGPS tells you when to go — using your unique birth chart and real-time planetary intelligence to build a personalised roadmap for every decision ahead of you.</p>
+      </div>
+      <div class="metaphor-grid reveal">
+        <div class="m-cell">
+          <div class="m-num">01</div>
+          <div class="m-old">Google Maps detects real-time traffic jams</div>
+          <div class="m-arrow">↓</div>
+          <div class="m-new">AstroLifeGPS detects real-time planetary transits affecting your mood and decisions</div>
+        </div>
+        <div class="m-cell">
+          <div class="m-num">02</div>
+          <div class="m-old">GPS reroutes you around roadblocks</div>
+          <div class="m-arrow">↓</div>
+          <div class="m-new">AstroLifeGPS suggests timing shifts when planetary conditions are unfavourable</div>
+        </div>
+        <div class="m-cell">
+          <div class="m-num">03</div>
+          <div class="m-old">GPS shows your fastest route from your location</div>
+          <div class="m-arrow">↓</div>
+          <div class="m-new">AstroLifeGPS shows your best path through the day from your unique birth chart</div>
+        </div>
+        <div class="m-cell">
+          <div class="m-num">04</div>
+          <div class="m-old">GPS updates every few seconds with live data</div>
+          <div class="m-arrow">↓</div>
+          <div class="m-new">AstroLifeGPS recalibrates every morning with live planetary ephemeris data</div>
+        </div>
+        <div class="m-cell">
+          <div class="m-num">05</div>
+          <div class="m-old">GPS works anywhere in the world</div>
+          <div class="m-arrow">↓</div>
+          <div class="m-new">AstroLifeGPS adapts to any timezone, location and life stage, globally</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAILY GPS DASHBOARD -->
+  <section class="bg-paper">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">The daily GPS dashboard</span>
+        <h2>Four scores. One clear picture of your day.</h2>
+        <p>Built from your current planetary transits, your active dasha period, your natal chart strength, and Moon influence — recalculated fresh, every morning.</p>
+      </div>
+    </div>
+    <div class="wrap reveal">
+      <div class="score-grid">
+        <div class="score-card">
+          <svg class="sc-icon" viewBox="0 0 40 40" fill="none" stroke="#15316B" stroke-width="1.6"><circle cx="20" cy="20" r="15"/><path d="M20 11v9l6 4"/></svg>
+          <h3>Daily Favorability</h3>
+          <p>Know how supportive the day is overall — before you plan around it.</p>
+        </div>
+        <div class="score-card">
+          <svg class="sc-icon" viewBox="0 0 40 40" fill="none" stroke="#15316B" stroke-width="1.6"><path d="M6 28l8-10 6 6 12-16"/><path d="M26 8h6v6"/></svg>
+          <h3>Wealth &amp; Career</h3>
+          <p>Identify windows of opportunity — and the days that call for caution.</p>
+        </div>
+        <div class="score-card">
+          <svg class="sc-icon" viewBox="0 0 40 40" fill="none" stroke="#15316B" stroke-width="1.6"><path d="M20 32s-12-7-12-16a7 7 0 0112-5 7 7 0 0112 5c0 9-12 16-12 16z"/></svg>
+          <h3>Relationships</h3>
+          <p>Improve communication and emotional timing with the people you love.</p>
+        </div>
+        <div class="score-card">
+          <svg class="sc-icon" viewBox="0 0 40 40" fill="none" stroke="#15316B" stroke-width="1.6"><path d="M20 6c4 6-4 8 0 14s-4 8 0 14"/><circle cx="20" cy="20" r="15"/></svg>
+          <h3>Health &amp; Wellness</h3>
+          <p>Understand your energy cycles before they understand you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENTIATOR TABLE -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Why it's different</span>
+        <h2>Not another horoscope app.</h2>
+      </div>
+      <div class="reveal" style="overflow-x:auto;">
+        <table class="diff-table">
+          <thead>
+            <tr><th>Feature</th><th class="center">Traditional astrology apps</th><th class="center">AstroLifeGPS</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Generic horoscope</td><td class="center"><span class="yes">✓</span></td><td class="center"><span class="no">—</span></td></tr>
+            <tr><td>Personalised birth chart AI</td><td class="center"><span class="no">—</span></td><td class="center"><span class="yes">✓</span></td></tr>
+            <tr><td>Daily Life GPS dashboard</td><td class="center"><span class="no">—</span></td><td class="center"><span class="yes">✓</span></td></tr>
+            <tr><td>Golden Moments timing</td><td class="center"><span class="no">—</span></td><td class="center"><span class="yes">✓</span></td></tr>
+            <tr><td>Conversational AI astrologer</td><td class="center"><span class="no">—</span></td><td class="center"><span class="yes">✓</span></td></tr>
+            <tr><td>Real-time transit intelligence</td><td class="center"><span class="no">—</span></td><td class="center"><span class="yes">✓</span></td></tr>
+            <tr><td>Dasha forecasting</td><td class="center"><span class="no">—</span></td><td class="center"><span class="yes">✓</span></td></tr>
+            <tr><td>Relationship GPS (Together)</td><td class="center"><span class="no">—</span></td><td class="center"><span class="yes">✓</span></td></tr>
+            <tr><td>Wealth timing intelligence</td><td class="center"><span class="no">—</span></td><td class="center"><span class="yes">✓</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- REBI AI -->
+  <section class="bg-navy" id="rebi">
+    <div class="wrap">
+      <div class="rebi-grid">
+        <div class="reveal">
+          <span class="eyebrow eyebrow-light">The intelligence layer</span>
+          <h2 style="margin-top:14px; margin-bottom:18px;">Powered by ReBi AI™</h2>
+          <p style="color:rgba(255,255,255,0.65); font-size:15.5px; line-height:1.7; margin-bottom:34px;">Unlike generic AI chatbots layered onto astrology prompts, ReBi AI is purpose-built for Vedic computation — combining natal mathematics, live transit overlay, dasha logic and conversational reasoning into a single pipeline that gets more precise the more you use it.</p>
+          <div class="rebi-flow">
+            <div class="flow-step"><span class="flow-num">01</span><span class="flow-label">Birth data</span></div>
+            <div class="flow-connector"><svg viewBox="0 0 14 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v14M2 11l5 5 5-5"/></svg></div>
+            <div class="flow-step"><span class="flow-num">02</span><span class="flow-label">Astrology computation engine</span></div>
+            <div class="flow-connector"><svg viewBox="0 0 14 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v14M2 11l5 5 5-5"/></svg></div>
+            <div class="flow-step"><span class="flow-num">03</span><span class="flow-label">ReBi AI reasoning layer</span></div>
+            <div class="flow-connector"><svg viewBox="0 0 14 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v14M2 11l5 5 5-5"/></svg></div>
+            <div class="flow-step"><span class="flow-num">04</span><span class="flow-label">Daily GPS dashboard</span></div>
+          </div>
+        </div>
+        <div class="rebi-modules reveal">
+          <div class="module-card"><h4>Natal Computation</h4><p>Real-time kundli generation across Lahiri, KP and BV Raman ayanamsa systems.</p></div>
+          <div class="module-card"><h4>Transit Intelligence</h4><p>Tracks live planetary positions against your natal chart, 24/7.</p></div>
+          <div class="module-card"><h4>Muhurta Optimizer</h4><p>Calculates Golden Moments using traditional timing logic, modernised.</p></div>
+          <div class="module-card"><h4>Dasha Predictor</h4><p>Maps your five-year horizon — opportunity windows and challenges alike.</p></div>
+          <div class="module-card"><h4>Conversational Layer</h4><p>Natural-language guidance behind the Chat tab and "Guided by Stars."</p></div>
+          <div class="module-card"><h4>Remedies AI</h4><p>Personalised gemstone, mantra and ritual guidance from your chart.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOLDEN MOMENTS -->
+  <section id="moments">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Timing, made visible</span>
+        <h2>Your daily Golden Moments™.</h2>
+        <p>Drawn straight from the Muhurta engine — the exact windows in your day built for action, and the ones built for rest.</p>
+      </div>
+      <div class="timeline reveal">
+        <div class="t-item">
+          <div class="t-time">08:30 AM – 10:00 AM</div>
+          <div class="t-title">Ideal for negotiations</div>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-desc">Mercury's alignment favours clear, persuasive communication. Schedule the conversation you've been delaying.</div>
+        </div>
+        <div class="t-item">
+          <div class="t-time">02:15 PM – 04:00 PM</div>
+          <div class="t-title">Great for focused work</div>
+          <div class="t-stars">★★★★☆</div>
+          <div class="t-desc">A steady, low-distraction window — best used for deep work, not meetings.</div>
+        </div>
+        <div class="t-item">
+          <div class="t-time">08:00 PM – 09:30 PM</div>
+          <div class="t-title">Strong relationship energy</div>
+          <div class="t-stars">★★★★★</div>
+          <div class="t-desc">Venus influence peaks in the evening — the right time for the people who matter most.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI CHAT -->
+  <section class="bg-paper">
+    <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+      <div class="reveal">
+        <span class="eyebrow">Meet your AI astrologer</span>
+        <h2 style="margin-top:14px; margin-bottom:18px;">Ask anything. Get a verdict, not a vibe.</h2>
+        <p style="color:var(--ink-soft); font-size:15.5px; line-height:1.7; margin-bottom:24px;">Unlimited natural-language conversations on career, relationships, wealth and timing — with confidence levels and reasoning attached to every answer.</p>
+        <ul style="list-style:none; font-size:14.5px; color:var(--ink-soft); line-height:2;">
+          <li>— Natural language conversations</li>
+          <li>— Career &amp; wealth guidance</li>
+          <li>— Relationship timing</li>
+          <li>— Personalised remedies</li>
+        </ul>
+      </div>
+      <div class="chat-mock reveal">
+        <div class="chat-bubble user">Should I accept the offer I received today?</div>
+        <div class="chat-bubble ai"><span class="tag">ReBi AI</span>Based on your current Jupiter period and upcoming transit influences, the next 11 days present stronger opportunities. Consider waiting before making a final decision.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES GRID -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Everything, in one app</span>
+        <h2>Built for daily life, not occasional curiosity.</h2>
+      </div>
+      <div class="feat-cols reveal">
+        <div class="feat-col">
+          <h4>Astrology Intelligence</h4>
+          <ul><li>Birth Chart</li><li>Panchang</li><li>Shadbala</li><li>Raj Yoga</li><li>Dasha Analysis</li><li>Moon Impact</li></ul>
+        </div>
+        <div class="feat-col">
+          <h4>Planning Tools</h4>
+          <ul><li>Muhurta Planner</li><li>Timing Grid</li><li>Prosperity Days</li><li>Lucky Days</li><li>Calendar Sync</li></ul>
+        </div>
+        <div class="feat-col">
+          <h4>AI Features</h4>
+          <ul><li>AI Astrologer</li><li>Daily GPS</li><li>Personalised Remedies</li><li>AI Predictions</li></ul>
+        </div>
+        <div class="feat-col">
+          <h4>Relationships</h4>
+          <ul><li>Compatibility</li><li>Together Mode</li><li>Shared Life Navigation</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET -->
+  <section class="bg-paper" id="market">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Market opportunity</span>
+        <h2>A category already proven — about to be reinvented.</h2>
+        <p>660 million Indians actively believe in astrology. AstroTalk alone proved the willingness to pay. AstroLifeGPS is built for the AI-native daily layer none of them occupy.</p>
+      </div>
+      <div class="stat-row reveal">
+        <div class="stat-cell"><div class="stat-num">660<span>M+</span></div><div class="stat-lbl">Core astrology believers across India</div></div>
+        <div class="stat-cell"><div class="stat-num">49<span>%</span></div><div class="stat-lbl">CAGR of India's astrology app market — among the fastest of any digital category</div></div>
+        <div class="stat-cell"><div class="stat-num"><span>$</span>1.8<span>B</span></div><div class="stat-lbl">Projected size of India's digital astrology market by 2030</div></div>
+        <div class="stat-cell"><div class="stat-num"><span>$</span>9<span>B</span></div><div class="stat-lbl">Projected global astrology app market by 2030</div></div>
+      </div>
+      <div class="reveal" style="overflow-x:auto;">
+        <table class="proj-table">
+          <thead><tr><th>Milestone</th><th>Active subscribers</th><th>Monthly revenue</th><th>Implied valuation</th></tr></thead>
+          <tbody>
+            <tr><td>Year 1</td><td>46,000+</td><td>₹2.3 Cr</td><td>₹139 Cr</td></tr>
+            <tr><td>Year 2</td><td>2,00,000+</td><td>₹7.0 Cr</td><td>₹421 Cr</td></tr>
+            <tr><td>Year 3</td><td>3,00,000+</td><td>₹18.1 Cr</td><td>₹1,087 Cr</td></tr>
+            <tr><td>Month 36</td><td>5,00,000+</td><td>₹25–32 Cr</td><td>₹1,500–1,920 Cr</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:12px; color:var(--ink-soft); margin-top:16px; font-family:'JetBrains Mono',monospace;">Base-case, founder-prepared planning estimates. Forward-looking — actual results may differ. Not investment advice.</p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
+        <span class="eyebrow">Early reactions</span>
+        <h2>What daily navigation feels like.</h2>
+      </div>
+      <div class="testi-grid reveal">
+        <div class="testi-card">
+          <div class="testi-quote">"AstroLifeGPS helps me plan important business decisions with confidence."</div>
+          <div class="testi-who">— Entrepreneur, Beta Tester</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-quote">"My daily GPS dashboard has become part of my morning routine."</div>
+          <div class="testi-who">— Working Professional</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-quote">"The Together feature helped us understand each other's timing better."</div>
+          <div class="testi-who">— Couple, Beta Tester</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-paper" id="faq">
+    <div class="wrap" style="max-width:760px;">
+      <div class="section-head reveal" style="margin-bottom:40px;">
+        <span class="eyebrow">Questions</span>
+        <h2>Frequently asked</h2>
+      </div>
+      <div class="reveal">
+        <div class="faq-item open">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><h4>Is this a horoscope app?</h4><div class="plus"></div></div>
+          <div class="faq-a"><p>No. AstroLifeGPS is an AI-powered life navigation platform — built around a daily, personalised dashboard rather than a generic sun-sign prediction.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><h4>How is AstroLifeGPS different?</h4><div class="plus"></div></div>
+          <div class="faq-a"><p>It combines Vedic astrology computation, the proprietary ReBi AI reasoning layer, real-time planetary intelligence, and personalised daily guidance — in one app.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><h4>Does it use my birth chart?</h4><div class="plus"></div></div>
+          <div class="faq-a"><p>Yes. Every score, insight and Golden Moment is personalised using your exact birth date, time and location.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><h4>Can I ask it questions directly?</h4><div class="plus"></div></div>
+          <div class="faq-a"><p>Yes — ReBi AI provides unlimited conversational guidance on career, relationships, wealth and timing through the Chat tab.</p></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><h4>Is my data secure?</h4><div class="plus"></div></div>
+          <div class="faq-a"><p>Yes. Privacy and data protection are core platform principles, with encryption applied to all sensitive birth data.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="bg-navy final-cta" id="download">
+    <svg class="orbit-svg" viewBox="0 0 1200 500" style="opacity:0.25;">
+      <ellipse class="orbit-ring" cx="600" cy="250" rx="520" ry="180" stroke="rgba(255,255,255,0.15)"/>
+      <ellipse class="orbit-ring alt" cx="600" cy="250" rx="380" ry="230" stroke="rgba(228,195,116,0.3)"/>
+      <circle cx="1120" cy="250" r="5" fill="#E4C374"/>
+      <circle cx="220" cy="180" r="4" fill="#fff" opacity="0.5"/>
+    </svg>
+    <div class="wrap reveal">
+      <span class="eyebrow eyebrow-light">Download AstroLifeGPS</span>
+      <h2 class="stop" style="margin-top:14px;">Stop guessing.</h2>
+      <h2 class="start">Start navigating.</h2>
+      <p>Join the people discovering better timing, better decisions, and greater clarity — every single morning.</p>
+      <div class="store-row">
+        <a href="#" class="store-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.7 12.3c0-3 2.4-4.4 2.5-4.5-1.4-2-3.5-2.3-4.3-2.3-1.8-.2-3.6 1.1-4.5 1.1-.9 0-2.4-1-3.9-1-2 0-3.9 1.2-4.9 3-2.1 3.6-.5 9 1.5 12 1 1.4 2.1 3.1 3.7 3 1.5-.1 2-1 3.8-1 1.8 0 2.2 1 3.8 1 1.6 0 2.6-1.4 3.5-2.9 1.1-1.7 1.6-3.3 1.6-3.4-.1 0-3.1-1.2-3.1-4.7 0 0 0 0 0 0z"/></svg>
+          Download for iOS
+        </a>
+        <a href="#" class="store-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l11 9-11 9V3zm12 9l3.5-3 3 1.7c1 .6 1 1.9 0 2.5l-3 1.8L15 12z"/></svg>
+          Get it on Google Play
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span style="display:inline-flex; align-items:center; gap:9px;">
+            <svg width="25" height="25" viewBox="0 0 96 96" fill="none" aria-hidden="true">
+              <defs><linearGradient id="algFoot" x1="16" y1="20" x2="82" y2="84" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#6FA8FF"/><stop offset=".55" stop-color="#6D5DF0"/><stop offset="1" stop-color="#9B5CF6"/>
+              </linearGradient></defs>
+              <path d="M41.5 24.5Q48 11 54.5 24.5L76.5 70.5Q83 84 68 84L28 84Q13 84 19.5 70.5Z" fill="url(#algFoot)"/>
+              <path d="M52 33C47.5 43 56 47 53 56C50.8 62.5 58 64 53 71C50.2 74.8 44 73.5 43.2 68C42 61.5 48 59 47.5 53C47 46.5 42.5 43 49 35C50.3 33.4 50.6 33 52 33Z" fill="#fff"/>
+            </svg>AstroLifeGPS</span>
+          <span class="pwr">Powered by ReBi AI™</span></div>
+        <p style="font-size:13.5px; max-width:280px; line-height:1.6;">Your AI-powered life navigation system — career, wealth, relationships and health, decoded daily.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#rebi">ReBi AI</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#moments">Golden Moments</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Data Protection</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AstroLifeGPS Technologies Pvt. Ltd. All rights reserved.</span>
+      <span>Made with cosmic precision in Bengaluru.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // header bg on scroll (already translucent, keep simple)
+</script>
+
+</body>
+</html>
