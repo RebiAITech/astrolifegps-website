@@ -2,10 +2,10 @@
    AstroLifeGPS — shared styles for content / legal sub-pages
    Matches the homepage design system (navy + gold, Fraunces).
    ============================================================ */
-@font-face{font-family:'Fraunces';font-style:normal;font-weight:300 600;font-display:swap;src:url('/assets/fonts/fraunces-variable.woff2') format('woff2');}
-@font-face{font-family:'Fraunces';font-style:italic;font-weight:300 600;font-display:swap;src:url('/assets/fonts/fraunces-italic.woff2') format('woff2');}
-@font-face{font-family:'Inter';font-style:normal;font-weight:400 800;font-display:swap;src:url('/assets/fonts/inter-variable.woff2') format('woff2');}
-@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 500;font-display:swap;src:url('/assets/fonts/jetbrainsmono-variable.woff2') format('woff2');}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300 600;font-display:swap;src:url('fonts/fraunces-variable.woff2') format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:300 600;font-display:swap;src:url('fonts/fraunces-italic.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 800;font-display:swap;src:url('fonts/inter-variable.woff2') format('woff2');}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 500;font-display:swap;src:url('fonts/jetbrainsmono-variable.woff2') format('woff2');}
 
 :root{
   --navy-deep:#0A1E42; --navy:#15316B; --navy-mid:#1E4090;
