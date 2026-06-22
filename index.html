@@ -119,10 +119,7 @@
     font-family:'Fraunces', serif; font-weight:600; font-size:19px;
     color:var(--navy-deep); display:flex; align-items:center; gap:8px;
   }
-  .logo .dot{
-    width:7px; height:7px; border-radius:50%; background:var(--gold);
-    box-shadow:0 0 0 3px rgba(200,155,60,0.18);
-  }
+  .logo-mark{ border-radius:7px; display:block; flex-shrink:0; }
   nav ul{ list-style:none; display:flex; gap:36px; }
   nav a{ font-size:14px; font-weight:500; color:var(--navy-deep); opacity:0.75; transition:opacity .2s; }
   nav a:hover{ opacity:1; }
@@ -425,13 +422,7 @@
 <header>
   <div class="nav-inner">
     <a href="#top" class="logo">
-      <svg class="logo-mark" width="27" height="27" viewBox="0 0 96 96" fill="none" aria-hidden="true">
-        <defs><linearGradient id="algNav" x1="16" y1="20" x2="82" y2="84" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stop-color="#6FA8FF"/><stop offset=".55" stop-color="#6D5DF0"/><stop offset="1" stop-color="#9B5CF6"/>
-        </linearGradient></defs>
-        <path d="M41.5 24.5Q48 11 54.5 24.5L76.5 70.5Q83 84 68 84L28 84Q13 84 19.5 70.5Z" fill="url(#algNav)"/>
-        <path d="M52 33C47.5 43 56 47 53 56C50.8 62.5 58 64 53 71C50.2 74.8 44 73.5 43.2 68C42 61.5 48 59 47.5 53C47 46.5 42.5 43 49 35C50.3 33.4 50.6 33 52 33Z" fill="#fff"/>
-      </svg>
+      <img class="logo-mark" src="/assets/logo.svg" alt="AstroLifeGPS logo" width="28" height="28">
       AstroLifeGPS</a>
     <nav>
       <ul>
@@ -850,14 +841,8 @@
     <div class="footer-grid">
       <div>
         <div class="footer-brand">
-          <span style="display:inline-flex; align-items:center; gap:9px;">
-            <svg width="25" height="25" viewBox="0 0 96 96" fill="none" aria-hidden="true">
-              <defs><linearGradient id="algFoot" x1="16" y1="20" x2="82" y2="84" gradientUnits="userSpaceOnUse">
-                <stop offset="0" stop-color="#6FA8FF"/><stop offset=".55" stop-color="#6D5DF0"/><stop offset="1" stop-color="#9B5CF6"/>
-              </linearGradient></defs>
-              <path d="M41.5 24.5Q48 11 54.5 24.5L76.5 70.5Q83 84 68 84L28 84Q13 84 19.5 70.5Z" fill="url(#algFoot)"/>
-              <path d="M52 33C47.5 43 56 47 53 56C50.8 62.5 58 64 53 71C50.2 74.8 44 73.5 43.2 68C42 61.5 48 59 47.5 53C47 46.5 42.5 43 49 35C50.3 33.4 50.6 33 52 33Z" fill="#fff"/>
-            </svg>AstroLifeGPS</span>
+          <span style="display:inline-flex; align-items:center; gap:10px;">
+            <img class="logo-mark" src="/assets/logo.svg" alt="AstroLifeGPS logo" width="26" height="26">AstroLifeGPS</span>
           <span class="pwr">Powered by ReBi AI™</span></div>
         <p style="font-size:13.5px; max-width:280px; line-height:1.6;">Your AI-powered life navigation system — career, wealth, relationships and health, decoded daily.</p>
       </div>
