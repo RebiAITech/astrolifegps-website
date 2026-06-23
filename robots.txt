@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://astrolifegps.com/sitemap.xml
+Sitemap: https://www.astrolifegps.com/sitemap.xml
