@@ -120,6 +120,7 @@
     color:var(--navy-deep); display:flex; align-items:center; gap:8px;
   }
   .logo-mark{ border-radius:7px; display:block; flex-shrink:0; }
+  .logo-lockup{ height:40px; width:auto; display:block; }
   nav ul{ list-style:none; display:flex; gap:36px; }
   nav a{ font-size:14px; font-weight:500; color:var(--navy-deep); opacity:0.75; transition:opacity .2s; }
   nav a:hover{ opacity:1; }
@@ -483,9 +484,8 @@
 
 <header>
   <div class="nav-inner">
-    <a href="#top" class="logo">
-      <img class="logo-mark" src="assets/logo.svg" alt="AstroLifeGPS logo" width="28" height="28">
-      AstroLifeGPS</a>
+    <a href="#top" class="logo" aria-label="AstroLifeGPS home">
+      <img class="logo-lockup" src="assets/logo-lockup.png" alt="AstroLifeGPS" width="129" height="40"></a>
     <nav>
       <ul>
         <li><a href="#how">How it works</a></li>
